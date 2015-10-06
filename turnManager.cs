@@ -33,12 +33,12 @@ public list<Vector2>[] calculateTurnSequence(list<Vector2> movement1,list<Vector
 		if(boardManager.isOccupied(movement2[i])){
 			velocitySequences[1][i]=0-vel2;}
 		else{velocitySequences[1][i]=vel2;}
-		if(movement1==movement2)
+		if(movement1==movement2) // Are you sure you can do this? You are supposed to compare the current items in the list right?
 		{
 			Vector2 temp=velocitySequences[0][i];
 			velocitySequences[0][i]=velocitySequences[1][i];
 			velocitySequences[1][i]=temp;
-		}
+		}	// Also, notice that after one collision, there could be a second collision which wouldn't happen if the first collision didn't take place!
 		
 	}
 
