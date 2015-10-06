@@ -4,14 +4,14 @@ public class functionManager : MonoBehaviour {
 	public Vector2[] direction;
 	// Use this for initialization
 	void Start () {
-		Debug.Log (getDistance (new Vector2 (2f, -1f), new Vector2 (0f, 0f)));
-		Debug.Log (getDistance (new Vector2 (3f, -2f), new Vector2 (2f, 0f)));
-		Debug.Log (getDistance (new Vector2 (-2f, 1f), new Vector2 (0f, 0f)));
-		Debug.Log (getDistance (new Vector2 (-2f, 1f), new Vector2 (1f, 0f)));
-		Debug.Log (isNear (new Vector2 (2f, 0f), new Vector2 (-1f, 1f)));
-		Debug.Log (isNear (new Vector2 (2f, 0f), new Vector2 (2f, -1f)));
-		Debug.Log (isOutOfBounds (new Vector2 (4f, -4f)));
-		Debug.Log (isOutOfBounds (new Vector2 (5f, -4f)));
+		//Debug.Log (getDistance (new Vector2 (2f, -1f), new Vector2 (0f, 0f)));
+		//Debug.Log (getDistance (new Vector2 (3f, -2f), new Vector2 (2f, 0f)));
+		//Debug.Log (getDistance (new Vector2 (-2f, 1f), new Vector2 (0f, 0f)));
+		//Debug.Log (getDistance (new Vector2 (-2f, 1f), new Vector2 (1f, 0f)));
+		//Debug.Log (isNear (new Vector2 (2f, 0f), new Vector2 (-1f, 1f)));
+		//Debug.Log (isNear (new Vector2 (2f, 0f), new Vector2 (2f, -1f)));
+		//Debug.Log (isOutOfBounds (new Vector2 (4f, -4f)));
+		//Debug.Log (isOutOfBounds (new Vector2 (5f, -4f)));
 		direction = new Vector2[6];
 		Vector2 right = new Vector2 (1f, 0f);
 		Vector2 left = new Vector2 (-1f, 0f);
