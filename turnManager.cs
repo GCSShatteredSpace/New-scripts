@@ -38,8 +38,8 @@ public list<Vector2>[] calculateTurnSequence(list<Vector2> movement1,list<Vector
 			velocitySequences[0][i]=velocitySequences[1][i];
 			velocitySequences[1][i]=temp;
 		}	
+		movement1[i]=movement1[i-1]+vel1;
+		movement2[i]=movement2[i-1]+vel2;  //how should the remaining movement positions be updated?
 	}
-	movement1[i]=movement1[i-1]+vel1;
-	movement2[i]=movement2[i-1]+vel2;  //how should the remaining movement positions be updated?
 	return velocitySequences;
 }
