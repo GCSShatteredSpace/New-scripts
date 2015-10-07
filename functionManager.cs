@@ -3,6 +3,7 @@ using System.Collections;
 public class functionManager : MonoBehaviour {
 	public Vector2[] direction;
 	const float vertPart = 0.8666f;
+	public int tileSize = 1;
 	// Use this for initialization
 	void Start () {
 		//Debug.Log (getDistance (new Vector2 (2f, -1f), new Vector2 (0f, 0f)));
@@ -36,7 +37,7 @@ public class functionManager : MonoBehaviour {
 	}
 	
 	public Vector3 hexPositionTransform(Vector2 v){
-		return new Vector3 (v.x + (0.5f * v.y), vertPart * v.y, 0f);
+		return new Vector3 (tileSize * (v.x + (0.5f * v.y)), tileSize * vertPart * v.y, 0f);
 	}
 	public bool isNear(Vector2 v1, Vector2 v2){
 		return getDistance(v1,v2) == 1;
