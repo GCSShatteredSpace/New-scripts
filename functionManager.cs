@@ -1,7 +1,8 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 public class functionManager : MonoBehaviour {
 	public Vector2[] direction;
+	const float vertPart = 0.8666f;
 	// Use this for initialization
 	void Start () {
 		//Debug.Log (getDistance (new Vector2 (2f, -1f), new Vector2 (0f, 0f)));
@@ -12,6 +13,8 @@ public class functionManager : MonoBehaviour {
 		//Debug.Log (isNear (new Vector2 (2f, 0f), new Vector2 (2f, -1f)));
 		//Debug.Log (isOutOfBounds (new Vector2 (4f, -4f)));
 		//Debug.Log (isOutOfBounds (new Vector2 (5f, -4f)));
+		//Debug.Log (hexPositionTransform (new Vector2 (3f, -2f)));
+		//Debug.Log (hexPositionTransform (new Vector2 (2f, 0f)));
 		direction = new Vector2[6];
 		Vector2 right = new Vector2 (1f, 0f);
 		Vector2 left = new Vector2 (-1f, 0f);
@@ -29,10 +32,12 @@ public class functionManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		
 	}
-
-
+	
+	public Vector3 hexPositionTransform(Vector2 v){
+		return new Vector3 (v.x + (0.5f * v.y), vertPart * v.y, 0f);
+	}
 	public bool isNear(Vector2 v1, Vector2 v2){
 		return getDistance(v1,v2) == 1;
 	}
@@ -49,5 +54,5 @@ public class functionManager : MonoBehaviour {
 		Vector2 origin = new Vector2(0f,0f);
 		return getDistance(origin,v) <= 4;
 	}
-
+	
 }
