@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class Tile : MonoBehaviour {
+public class tile : MonoBehaviour {
 	private Renderer rend;
 
 	private Vector2 playerPosition;
