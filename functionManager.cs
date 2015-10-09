@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 public class functionManager : MonoBehaviour {
-	public Vector2[] direction;
+	public Vector2[] direction; //holds all six movement directions
 	const float vertPart = 0.8666f; // sqrt(3)/2
 	public int tileSize;
 	[SerializeField] statsManager dataBase
@@ -38,13 +38,13 @@ public class functionManager : MonoBehaviour {
 		
 	}
 	
-	public Vector3 hexPositionTransform(Vector2 v){
+	public Vector3 hexPositionTransform(Vector2 v){ //position in Unity space
 		return new Vector3 (tileSize * (v.x + (0.5f * v.y)), tileSize * vertPart * v.y, 0f);
 	}
-	public bool isNear(Vector2 v1, Vector2 v2){
+	public bool isNear(Vector2 v1, Vector2 v2){ //v1 and v2 are adjacent to each other
 		return getDistance(v1,v2) == 1;
 	}
-	public int getDistance(Vector2 v1, Vector2 v2){
+	public int getDistance(Vector2 v1, Vector2 v2){ //shortest path in tiles from v1 to v2
 		int x2 = (int)(v2.x - v1.x);
 		int y2 = (int)(v2.y - v1.y);
 		int z = 0 - x2 - y2;
@@ -53,34 +53,26 @@ public class functionManager : MonoBehaviour {
 		return dist;
 	}
 	
-	public bool isOutOfBounds(Vector2 v){
+	public bool isOutOfBounds(Vector2 v){ //see if the tile is in the board bounds
 		Vector2 origin = new Vector2(0f,0f);
 		return getDistance(origin,v) <= 4;
 	}
 	
 	public bool areAligned(Vector2 v){	// See if direction is along one of the six ones
-		if(v.x==0||v.y==0||v.x==-v.y){
-			return true;
-		}else{
-			return false;
-		}
+		return (v.x==0||v.y==0||v.x==-v.y);
 	}
 	
 	public Vector2 getNormal(Vector2 v){ //return the identity vector along the 6 directions if areAligned
 		int x, y;
-		if (v.x == 0) {
-			x = 0;		
-		} else if (v.x > 0) {
-			x = 1;
+		if(v.x == 0){
+			x = 0;
 		} else {
-			x=-1;		
+			x = Mathf.sign(x);
 		}
-		if (v.y == 0) {
-			y = 0;		
-		} else if (v.y > 0) {
-			y = 1;
+		if(v.y == 0){
+			y = 0;
 		} else {
-			y =-1;		
+			y = Mathf.sign(y);
 		}
 		return new Vector2 (x, y);
 	}
