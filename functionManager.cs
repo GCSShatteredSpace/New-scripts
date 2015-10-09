@@ -67,12 +67,12 @@ public class functionManager : MonoBehaviour {
 		if(v.x == 0){
 			x = 0;
 		} else {
-			x = Mathf.sign(x);
+			x = Mathf.sign(v.x);
 		}
 		if(v.y == 0){
 			y = 0;
 		} else {
-			y = Mathf.sign(y);
+			y = Mathf.sign(v.y);
 		}
 		return new Vector2 (x, y);
 	}
