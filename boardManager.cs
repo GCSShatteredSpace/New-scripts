@@ -108,4 +108,12 @@ public class boardManager : MonoBehaviour {
         }
         return false;        
     }
+
+    public Vector2[] turretGetter(){
+        return turretSpawnPoint;
+    }
+
+    public Vector2[] barrierGetter(){
+        return barrierSpawnPoint;
+    }
 }
