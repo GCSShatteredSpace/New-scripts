@@ -5,27 +5,44 @@ using System.Collections.Generic;
 public class playerAction : MonoBehaviour {
 	
 	inputManager iManager;
+	turnManager tManager;
 	functionManager SS;
-  statsManager dataBase;
+  	statsManager dataBase;
 	
 	GameObject player;
 	
 	Vector2 playerPosition;
 	int energy;
 	int exp;
+	int time;
 
-  [SerializeField] string playerName;
+  	[SerializeField] string playerName;
 	[SerializeField] int playerIndex;
 
 	void Start () {
-    player=this.GameObject
+    	player = this.GameObject;
+    	time=-1;
+	}
+	
+	void Update(){
+		if (tManager.getTurn()==turn) return;
+		if (tManager.getTime()==time) return;
+		// Everything happens in between!
+		
+		// What about making a list of delegates?
+		time=tManager.getTime();
+		if (time==-1) turn=tManager.getTurn();
 	}
 	
 	void prepareToMove (){
 	  
 	}
-  
-  IEnumerator moveStep(Vector2 target, float time){
+	
+	void receiveDamage(){
+		
+	}
+  	
+  	IEnumerator moveStep(Vector2 target, float time){
 		Vector3 startPos = SS.hexPositionTransform(playerPosition);
 		Vector3 endPos =  SS.hexPositionTransform(target);
 		float d = Vector3.Distance(startPos,endPos);
@@ -40,4 +57,6 @@ public class playerAction : MonoBehaviour {
 		Debug.Log("Difference:");       // Trying to see if it works!
 		Debug.Log(time.Time-currTime-time);
 	}
+	
+	void
 }
