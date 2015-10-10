@@ -14,7 +14,7 @@ public class boardManager : MonoBehaviour {
     public int tileSize;
     [SerializeField] float piecesize //I assume this is the diameter of the circle as well?
     [SerializeField] statsManager dataBase;
-    [SerializeField] functionManager funcManager;
+    [SerializeField] functionManager SS;    // Just call it SS for sake of laziness
     [SerializeField] Vector2[] turretSpawnPoint = new Vector2[5];
     [SerializeField] Vector2[] barrierSpawnPoint = new Vector2[12]; //barrier numbers may vary
 
@@ -47,12 +47,12 @@ public class boardManager : MonoBehaviour {
      */
     public bool isBlocked(Vector2 firePosition, Vection2 targetPosition){
         int count=0;
-        Vector3 firePos = funcManager.hexPositionTransform(firePosition);
-        Vector3 targetPos = funcManager.hexPositionTransform(targetPosition);
+        Vector3 firePos = SS.hexPositionTransform(firePosition);
+        Vector3 targetPos = SS.hexPositionTransform(targetPosition);
         Vector3 barrierPos;
         float dis;
         for (int i=0;i<barrierSpawnPoint.Length;i++){
-            barrierPos = funcManager.hexPositionTransform(barrierSpawnPoint[i]);
+            barrierPos = SS.hexPositionTransform(barrierSpawnPoint[i]);
             if ((firePos.x<=barrierPos.x) && 
                 (targetPos.x>=barrierPos.x) &&
                 (firePos.y<=barrierPos.y) && 
@@ -61,9 +61,9 @@ public class boardManager : MonoBehaviour {
                 if (dis<piecesize/2){
                     return true; //the projectile cut through one 
                 }
-                else if (dis == piecesize/2){
-                    count++;
-                }
+                else if (dis == piecesize/2){   // Nice try! There's actually a (Mathematically speaking) simple solution:
+                    count++;                    // if dis==piecesize/2 (or almostEqual) nudge the target a little bit away from the current barrier
+                }                               // And run this thing again!
             }
         if (count>1){ //the projectile cuts through the tangent of multiple barriers
                       //actually this idea is bugged in some barrier formations
@@ -78,12 +78,12 @@ public class boardManager : MonoBehaviour {
     public bool isOccupied(Vector2 pos){
         for (int i=0;i<turretSpawnPoint.Length;i++){
             if (pos.x == turretSpawnPoint[i].x && pos.y == turretSpawnPoint[i].y){
-                return true;
+                return true;        // Oh but what if the turret is destroyed? >:-)
             }
         }
         for (int i=0;i<barrierSpawnPoint.Length;i++){
             if (pos.x == barrierSpawnPoint[i].x && pos.y == barrierSpawnPoint[i].y){
-                return true;
+                return true;        // What if the shields are not deployed? >:-)
             }
         }
         return false;
@@ -97,12 +97,7 @@ public class boardManager : MonoBehaviour {
         float turretX;
         float turretY;
         for (int i=0;i<turretSpawnPoint.Length;i++){
-            turretX = turretSpawnPoint[i].x;
-            turretY = turretSpawnPoint[i].y;
-            if (pos.x >= turretX-range && 
-                pos.x <= turretX+range && 
-                pos.y >= turretY-range &&
-                pos.y <= turretY+range){
+            if (SS.getDistance(turretSpawnPoint[i],pos)<=range){    // Use the functions in SS!
                 return true;
             }
         }
