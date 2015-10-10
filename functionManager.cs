@@ -63,16 +63,13 @@ public class functionManager : MonoBehaviour {
 	}
 	
 	public Vector2 getNormal(Vector2 v){ //return the identity vector along the 6 directions if areAligned
-		int x, y;
-		if(v.x == 0){
-			x = 0;
-		} else {
-			x = Mathf.sign(v.x);
+		int x = 0;
+		int y = 0;
+		if(v.x != 0){
+			x = Mathf.Sign(v.x);
 		}
-		if(v.y == 0){
-			y = 0;
-		} else {
-			y = Mathf.sign(v.y);
+		if(v.y != 0){
+			y = Mathf.Sign(v.y);
 		}
 		return new Vector2 (x, y);
 	}
