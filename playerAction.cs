@@ -15,6 +15,8 @@ public class playerAction : MonoBehaviour {
 	int energy;
 	int exp;
 	int time;
+	int turn;
+	LinkedList<action> actStack;
 
   	[SerializeField] string playerName;
 	[SerializeField] int playerIndex;
@@ -22,13 +24,26 @@ public class playerAction : MonoBehaviour {
 	void Start () {
     	player = this.GameObject;
     	time=-1;
+    	turn=0;
+    	actStack = new LinkedList<action>();
 	}
 	
 	void Update(){
 		if (tManager.getTurn()==turn) return;
 		if (tManager.getTime()==time) return;
 		// Everything happens in between!
-		
+		while(turn < tManager.getTurn()){
+			while(time < tManager.getTime() && time < 4){
+				if(actStack.Count == 0){
+					Debug.log("no actions left to do!!")
+				} else {
+					action act = actStack.RemoveFirst();
+					
+				}
+				time++;
+			}
+			turn++;
+		}
 		// What about making a list of delegates?
 		time=tManager.getTime();
 		if (time==-1) turn=tManager.getTurn();
@@ -50,13 +65,11 @@ public class playerAction : MonoBehaviour {
 		float v = d/time * Time.fixedDeltaTime;
 		int step = Mathf.Floor(d/v)+1;
 		currTime = Time.time;
-		for(int i=0;i++;i<step){    
+		for(int i = 0;i<step;i++){    
 			player.transform.position = Vector3.MoveTowards(startPos,endPos,v);
 			yield return new WaitForSeconds (Time.fixedDeltaTime);
 		}
-		Debug.Log("Difference:");       // Trying to see if it works!
-		Debug.Log(time.Time-currTime-time);
+		//Debug.Log("Difference:");       // Trying to see if it works!
+		//Debug.Log(time.Time-currTime-time);
 	}
-	
-	void
 }
