@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System;
 
-public abstract class Weapon
+public abstract class Weapon : MonoBehavior
 {
 
     private int damage;
@@ -9,6 +9,7 @@ public abstract class Weapon
     private float delay;
     private string name; 
     private string description; 
+	private int fireTime; 
     /*Note: intentionally did not include too many required fields in the abstract class. Can add more later if necessary */ 
     
 	public Weapon(string name, string description,int damage, int range, int delay) /* initiates a basic weapon object. Can override in a 
@@ -23,9 +24,30 @@ public abstract class Weapon
 
     public int prepareToFire() 
     {
-
+		this.fireTime = this.fireTime + delay; 
     }
+	
+	public update()
+	{
+		this.fireTime -= 1; 
+		if this.fireTime <= 0
+		{
+			fireWeapon(); 
+		}
+	}
+	
+	public fireWeapon()
+	{
+			
+			
+			
+	}
 
+	public int getFireTime()
+	{
+		return this.fireTime;
+	}
+	
     public int getDamage()
     {
         return this.damage; 
