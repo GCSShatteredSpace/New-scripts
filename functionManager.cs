@@ -1,10 +1,10 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 public class functionManager : MonoBehaviour {
 	public Vector2[] direction; //holds all six movement directions
 	const float vertPart = 0.8666f; // sqrt(3)/2
-	public int tileSize;
-	[SerializeField] statsManager dataBase
+	float tileSize;
+	[SerializeField] statsManager dataBase;
 	
 	void Start () {
 		//Debug.Log (getDistance (new Vector2 (2f, -1f), new Vector2 (0f, 0f)));
@@ -66,10 +66,10 @@ public class functionManager : MonoBehaviour {
 		int x = 0;
 		int y = 0;
 		if(v.x != 0){
-			x = Mathf.Sign(v.x);
+			x = Mathf.RoundToInt(Mathf.Sign(v.x));	// Sign returns a float
 		}
 		if(v.y != 0){
-			y = Mathf.Sign(v.y);
+			y = Mathf.RoundToInt(Mathf.Sign(v.y));
 		}
 		return new Vector2 (x, y);
 	}
